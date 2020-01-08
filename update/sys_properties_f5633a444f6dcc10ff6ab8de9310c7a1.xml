@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices>None,Production only,All environments except QA/Dev,All environments except Dev</choices>
+        <description>Select the environments which need change request for any deployments&#13;
+Note: Time zone to evaluate the change window is as per the timezone of the user profile which runs the Scheduled job.</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_7756_update_set.non_prod_us_deployment_change_requirement_type</name>
+        <read_roles/>
+        <suffix>non_prod_us_deployment_change_requirement_type</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-12-01 13:36:28</sys_created_on>
+        <sys_id>f5633a444f6dcc10ff6ab8de9310c7a1</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>x_7756_update_set.non_prod_us_deployment_change_requirement_type</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_properties_f5633a444f6dcc10ff6ab8de9310c7a1</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2020-01-02 16:17:54</sys_updated_on>
+        <type>choicelist</type>
+        <value>None</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=f5633a444f6dcc10ff6ab8de9310c7a1"/>
+</record_update>

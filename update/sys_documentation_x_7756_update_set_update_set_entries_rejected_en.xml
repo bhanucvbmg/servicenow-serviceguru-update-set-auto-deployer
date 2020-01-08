@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="rejected" label="Rejected by the Reviewer" language="en" table="x_7756_update_set_update_set_entries">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>rejected</element>
+            <help/>
+            <hint/>
+            <label>Rejected by the Reviewer</label>
+            <language>en</language>
+            <name>x_7756_update_set_update_set_entries</name>
+            <plural>Rejected by the Reviewer</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>rshetty</sys_created_by>
+            <sys_created_on>2019-11-01 03:03:49</sys_created_on>
+            <sys_id>8ee24a1e4ffc0810ff6ab8de9310c7b7</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>Rejected by the Reviewer</sys_name>
+            <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+            <sys_update_name>sys_documentation_x_7756_update_set_update_set_entries_rejected_en</sys_update_name>
+            <sys_updated_by>rshetty</sys_updated_by>
+            <sys_updated_on>2019-11-01 03:14:53</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

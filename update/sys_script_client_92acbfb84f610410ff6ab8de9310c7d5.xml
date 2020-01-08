@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>change_request</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>ServiceGuru - Load Environments</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+    //Type appropriate comment here, and begin script below
+    if (g_form.isNewRecord()) {
+        g_form.addErrorMessage('Use the Service Catalog to submit any new records.');
+		return;
+    }
+
+    g_form.showFieldMsg('destination_environment', 'Change to "Destination environment" should be through a Service request.', 'info');
+
+    var ajax = new GlideAjax("x_7756_update_set.service_guru_us_helper_client");
+    ajax.addParam("sysparm_name", "getInstance");
+    ajax.getXML(callBack4455764544468);
+}
+
+
+function callBack4455764544468(response) {
+    var answer = response.responseXML.documentElement.getAttribute("answer").toString();
+    answer = answer.split(',');
+
+    if (answer == '' || answer == null)
+        return;
+    var intermediate_instance_16 = g_form.getValue('intermediate_instance_16');
+    var intermediate_instance_8 = g_form.getValue('intermediate_instance_8');
+    var intermediate_instance_14 = g_form.getValue('intermediate_instance_14');
+    var intermediate_instance_19 = g_form.getValue('intermediate_instance_19');
+    var intermediate_instance_12 = g_form.getValue('intermediate_instance_12');
+    var intermediate_instance_11 = g_form.getValue('intermediate_instance_11');
+    var intermediate_instance_9 = g_form.getValue('intermediate_instance_9');
+    var intermediate_instance_10 = g_form.getValue('intermediate_instance_10');
+    var intermediate_instance_15 = g_form.getValue('intermediate_instance_15');
+    var intermediate_instance_13 = g_form.getValue('intermediate_instance_13');
+    var intermediate_instance_18 = g_form.getValue('intermediate_instance_18');
+    var intermediate_instance_17 = g_form.getValue('intermediate_instance_17');
+    var uat_environment = g_form.getValue('uat_environment');
+    var intermediate_instance_5 = g_form.getValue('intermediate_instance_5');
+    var intermediate_instance_7 = g_form.getValue('intermediate_instance_7');
+    var intermediate_instance_6 = g_form.getValue('intermediate_instance_6');
+    var intermediate_instance_4 = g_form.getValue('intermediate_instance_4');
+    var intermediate_instance_3 = g_form.getValue('intermediate_instance_3');
+    var intermediate_instance_2 = g_form.getValue('intermediate_instance_2');
+    var intermediate_instance_1 = g_form.getValue('intermediate_instance_1');
+    var qa_environment = g_form.getValue('qa_environment');
+    var dev_environment = g_form.getValue('dev_environment');
+
+
+    g_form.clearOptions('intermediate_instance_16');
+    g_form.clearOptions('intermediate_instance_8');
+    g_form.clearOptions('intermediate_instance_14');
+    g_form.clearOptions('intermediate_instance_19');
+    g_form.clearOptions('intermediate_instance_12');
+    g_form.clearOptions('intermediate_instance_11');
+    g_form.clearOptions('intermediate_instance_9');
+    g_form.clearOptions('intermediate_instance_10');
+    g_form.clearOptions('intermediate_instance_15');
+    g_form.clearOptions('intermediate_instance_13');
+    g_form.clearOptions('intermediate_instance_18');
+    g_form.clearOptions('intermediate_instance_17');
+    g_form.clearOptions('uat_environment');
+    g_form.clearOptions('intermediate_instance_5');
+    g_form.clearOptions('intermediate_instance_7');
+    g_form.clearOptions('intermediate_instance_6');
+    g_form.clearOptions('intermediate_instance_4');
+    g_form.clearOptions('intermediate_instance_3');
+    g_form.clearOptions('intermediate_instance_2');
+    g_form.clearOptions('intermediate_instance_1');
+    g_form.clearOptions('qa_environment');
+    g_form.clearOptions('dev_environment');
+
+    g_form.addOption('intermediate_instance_16', '', '-- None --');
+    g_form.addOption('intermediate_instance_8', '', '-- None --');
+    g_form.addOption('intermediate_instance_14', '', '-- None --');
+    g_form.addOption('intermediate_instance_19', '', '-- None --');
+    g_form.addOption('intermediate_instance_12', '', '-- None --');
+    g_form.addOption('intermediate_instance_11', '', '-- None --');
+    g_form.addOption('intermediate_instance_9', '', '-- None --');
+    g_form.addOption('intermediate_instance_10', '', '-- None --');
+    g_form.addOption('intermediate_instance_15', '', '-- None --');
+    g_form.addOption('intermediate_instance_13', '', '-- None --');
+    g_form.addOption('intermediate_instance_18', '', '-- None --');
+    g_form.addOption('intermediate_instance_17', '', '-- None --');
+    g_form.addOption('uat_environment', '', '-- None --');
+    g_form.addOption('intermediate_instance_5', '', '-- None --');
+    g_form.addOption('intermediate_instance_7', '', '-- None --');
+    g_form.addOption('intermediate_instance_6', '', '-- None --');
+    g_form.addOption('intermediate_instance_4', '', '-- None --');
+    g_form.addOption('intermediate_instance_3', '', '-- None --');
+    g_form.addOption('intermediate_instance_2', '', '-- None --');
+    g_form.addOption('intermediate_instance_1', '', '-- None --');
+    g_form.addOption('qa_environment', '', '-- None --');
+    g_form.addOption('dev_environment', '', '-- None --');
+
+    for (var i = 0; i < answer.length - 1; i++) {
+
+        g_form.addOption('intermediate_instance_16', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_8', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_14', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_19', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_12', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_11', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_9', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_10', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_15', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_13', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_18', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_17', answer[i], answer[i]);
+        g_form.addOption('uat_environment', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_5', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_7', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_6', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_4', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_3', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_2', answer[i], answer[i]);
+        g_form.addOption('intermediate_instance_1', answer[i], answer[i]);
+        g_form.addOption('qa_environment', answer[i], answer[i]);
+        g_form.addOption('dev_environment', answer[i], answer[i]);
+
+
+    }
+    g_form.setValue('intermediate_instance_16', intermediate_instance_16);
+    g_form.setValue('intermediate_instance_8', intermediate_instance_8);
+    g_form.setValue('intermediate_instance_14', intermediate_instance_14);
+    g_form.setValue('intermediate_instance_19', intermediate_instance_19);
+    g_form.setValue('intermediate_instance_12', intermediate_instance_12);
+    g_form.setValue('intermediate_instance_11', intermediate_instance_11);
+    g_form.setValue('intermediate_instance_9', intermediate_instance_9);
+    g_form.setValue('intermediate_instance_10', intermediate_instance_10);
+    g_form.setValue('intermediate_instance_15', intermediate_instance_15);
+    g_form.setValue('intermediate_instance_13', intermediate_instance_13);
+    g_form.setValue('intermediate_instance_18', intermediate_instance_18);
+    g_form.setValue('intermediate_instance_17', intermediate_instance_17);
+    g_form.setValue('uat_environment', uat_environment);
+    g_form.setValue('intermediate_instance_5', intermediate_instance_5);
+    g_form.setValue('intermediate_instance_7', intermediate_instance_7);
+    g_form.setValue('intermediate_instance_6', intermediate_instance_6);
+    g_form.setValue('intermediate_instance_4', intermediate_instance_4);
+    g_form.setValue('intermediate_instance_3', intermediate_instance_3);
+    g_form.setValue('intermediate_instance_2', intermediate_instance_2);
+    g_form.setValue('intermediate_instance_1', intermediate_instance_1);
+    g_form.setValue('qa_environment', qa_environment);
+    g_form.setValue('dev_environment', dev_environment);
+
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-12-04 02:53:29</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>92acbfb84f610410ff6ab8de9310c7d5</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>ServiceGuru - Load Environments</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_script_client_92acbfb84f610410ff6ab8de9310c7d5</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-31 19:19:46</sys_updated_on>
+        <table>x_7756_update_set_component_tracker</table>
+        <type>onLoad</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

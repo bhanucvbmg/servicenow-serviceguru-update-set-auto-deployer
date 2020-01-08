@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_7756_update_set.service_guru_us_helper_client</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>service_guru_us_helper_client</name>
+        <script><![CDATA[var service_guru_us_helper_client = Class.create();
+service_guru_us_helper_client.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    getHtml: function() {
+        var component_id = this.getParameter('component_id');
+        component_id = component_id.toString();
+        try {
+            var gr = new GlideRecord('x_7756_update_set_component_tracker');
+            gr.get('number', component_id);
+
+
+            var current_path = gr.update_set_path.toString();
+            current_path = current_path.split(',');
+            var proposed_path = gr.update_set_proposed_path.toString();
+            proposed_path = proposed_path.split(',');
+            var htm = '',
+                bool = false,
+                el = '',
+                color, url = '',
+                title = '';
+
+            if (gr.type == 'script') {
+                url = 'https://' + proposed_path[count] + '.service-now.com/syslog_list.do?sysparm_query=sys_created_onONToday%40javascript%3Ags.beginningOfToday()%40javascript%3Ags.endOfToday()&sysparm_view=';
+            } else {
+                url = 'https://' + proposed_path[count] + '.service-now.com/sys_remote_update_set_list.do?sysparm_query=sys_class_name%3Dsys_remote_update_set%5Ename%3D' + gr.update_set_name + '&sysparm_view=';
+            }
+
+
+            for (var count = 0; count < proposed_path.length; count++) {
+                url = '', title = '';
+
+                if (gr.type == 'script') {
+                    title = 'This will open the Log entries for today in syslog table of ' + proposed_path[count];
+                    url = 'https://' + proposed_path[count] + '.service-now.com/syslog_list.do?sysparm_query=sys_created_onONToday%40javascript%3Ags.beginningOfToday()%40javascript%3Ags.endOfToday()&sysparm_view=';
+                } else {
+                    title = 'This will open the Retreived update set entry of update set ' + gr.update_set_name + ' in ' + proposed_path[count];
+                    url = 'https://' + proposed_path[count] + '.service-now.com/sys_remote_update_set_list.do?sysparm_query=sys_class_name%3Dsys_remote_update_set%5Ename%3D' + gr.update_set_name + '&sysparm_view=';
+                }
+                bool = false;
+                for (var i = 0; i < current_path.length; i++) {
+                    if (current_path[i] == proposed_path[count]) {
+                        bool = true;
+                    }
+                }
+                /*color codes:
+                green: completed
+                orange: current environment in progress (waiting for others to complete)
+                black: future environments
+                */
+
+                color = '';
+
+
+                if (bool) {
+                    if (gr.update_set_next_environment.toString() == proposed_path[count]) {
+                        color = '#be5e00';
+                    } else {
+                        color = 'green';
+                    }
+                } else {
+                    if (gr.update_set_next_environment.toString() == proposed_path[count]) {
+                        color = '#be5e00';
+                    } else {
+                        color = 'black';
+                    }
+                }
+                htm += '--><a title = "' + title + '" target="_blank" style="font-size:20px;color:' + color + '" href="' + url + '">' + proposed_path[count] + '</a>';
+            }
+            if (proposed_path.length > 0) htm = htm.substring(3);
+            htm += '<br/><br/><span style="font-size:15px;color:black">Legend: </span>';
+            htm += '<span style="font-size:15px;color:green">Green (Commit completed), </span>';
+            htm += '<span style="font-size:15px;color:#be5e00">Orange (Waiting to be committed), </span>';
+            htm += '<span style="font-size:15px;color:black">Black (Future environments, not yet committed)</span>';
+
+            return htm;
+        } catch (e) {
+            return e;
+        }
+    },
+    validateUpdateSetName_wrapper: function() {
+        var dev = this.getParameter('dev');
+        var release = this.getParameter('release');
+        var us_name = this.getParameter('update_set');
+
+        return this.validateUpdateSetName(dev, release, us_name);
+    },
+    validateUpdateSetName: function(dev, release, us_name) {
+        var obj = new x_7756_update_set.service_guru_us_helper_scoped();
+
+        try {
+
+            var grX_7756USUSM2 = new GlideRecord('x_7756_update_set_component_tracker');
+            grX_7756USUSM2.addEncodedQuery('state!=3');
+            grX_7756USUSM2.addEncodedQuery("parent!=" + release + "^update_set_name=" + us_name);
+            grX_7756USUSM2.setLimit(1);
+            grX_7756USUSM2.query();
+
+            if (grX_7756USUSM2.next()) {
+                return "Update Set '" + us_name + "' is already associated with another Release " + grX_7756USUSM2.parent.number + "</b>";
+            }
+
+            grX_7756USUSM2 = new GlideRecord('x_7756_update_set_component_tracker');
+            grX_7756USUSM2.addEncodedQuery('state!=3');
+            grX_7756USUSM2.addEncodedQuery("parent=" + release);
+            grX_7756USUSM2.setLimit(1);
+            grX_7756USUSM2.query();
+
+            if (grX_7756USUSM2.next()) {
+                dev = grX_7756USUSM2.dev_environment;
+            } else {
+                // dev = this.getParameter('dev');
+            }
+
+            var query = 'name%3D' + us_name.toString().replace(/ /gi, "%20");
+            var requestUpdateSet = new sn_ws.RESTMessageV2();
+
+            var lnk = 'https://' + dev + '.service-now.com/api/now/table/sys_update_set?sysparm_query=';
+            lnk += query;
+
+            requestUpdateSet.setEndpoint(lnk);
+            requestUpdateSet.setHttpMethod('GET');
+            requestUpdateSet.setBasicAuth(obj.getUserName(dev), obj.getPassword(dev));
+            requestUpdateSet.setRequestHeader("Accept", "application/json");
+            var returnObj = requestUpdateSet.execute();
+
+            var code = returnObj.getStatusCode();
+
+            if (code != 200) {
+                //send an email about connectivity
+                this.info('Connectivity failure for ' + grAggregateByNextEnvironment.destination_environment);
+            } else {
+                var objUpdateSet = JSON.parse(returnObj.getBody());
+                if (objUpdateSet.result.length == 0) {
+                    return gs.getMessage("Error in Update set validation. Update Set '" + us_name + "' is Invalid or Cannot be found in the Dev Environment.");
+                } else {
+                    if (objUpdateSet.result[0].state != 'complete') {
+                        return gs.getMessage("Error in Update set validation. Update Set '" + us_name + "' is not in a Completed state. Please close this update set.");
+                    } else if (objUpdateSet.result[0].parent != '' || objUpdateSet.result[0].base_update_set != '') {
+                        return gs.getMessage("Error in Update set validation. '" + us_name + "' is a batched update set. This tool does not support deployment of batched update set at the moment.");
+                    } else {
+                        return '';
+                    }
+                }
+            }
+            return '';
+        } catch (e) {
+            this.info('error in validateUpdateSetName:' + e);
+            return gs.getMessage('Update Set Name could not be validated as we encountered an connectivity error with Dev environment: ') + dev;
+        }
+    },
+    validateIfDestinationEnvironmentIsAmongSelected: function() {
+        try {
+            var destination_environment = this.getParameter('destination_environment').toString();
+            var all_env = new x_7756_update_set.service_guru_us_helper_scoped().getProposedPath(JSON.parse(this.getParameter('obj').toString()));
+            all_env = all_env.split(',');
+
+            for (var i = 0; i < all_env.length; i++) {
+                if (all_env[i] == destination_environment) {
+                    return '';
+                }
+            }
+            return 'Destination environment ' + destination_environment + ' is not valid as it is not present in any of the selected environments for this release.';
+        } catch (e) {
+            this.info('error in validateIfDestinationEnvironmentIsAmongSelected in script include service_guru_us_helper_client' + e);
+            return 'error in validateIfDestinationEnvironmentIsAmongSelected in script include service_guru_us_helper_client' + e;
+        }
+    },
+    allEnvValue454443: function(current) {
+        try {
+            var obj_scoped = new x_7756_update_set.service_guru_us_helper_scoped();
+            var all_env = '';
+            var obj = {};
+
+            obj.dev_environment = current.variables.dev_environment.toString();
+            obj.qa_environment = current.variables.qa_environment.toString();
+            obj.uat_environment = current.variables.uat_environment.toString();
+
+            obj.intermediate_instance_1 = current.variables.intermediate_instance_1.toString();
+            obj.intermediate_instance_2 = current.variables.intermediate_instance_2.toString();
+            obj.intermediate_instance_3 = current.variables.intermediate_instance_3.toString();
+            obj.intermediate_instance_4 = current.variables.intermediate_instance_4.toString();
+            obj.intermediate_instance_5 = current.variables.intermediate_instance_5.toString();
+            obj.intermediate_instance_6 = current.variables.intermediate_instance_6.toString();
+            obj.intermediate_instance_7 = current.variables.intermediate_instance_7.toString();
+
+            obj.intermediate_instance_8 = current.variables.intermediate_instance_8.toString();
+            obj.intermediate_instance_9 = current.variables.intermediate_instance_9.toString();
+            obj.intermediate_instance_10 = current.variables.intermediate_instance_10.toString();
+            obj.intermediate_instance_11 = current.variables.intermediate_instance_11.toString();
+            obj.intermediate_instance_12 = current.variables.intermediate_instance_12.toString();
+            obj.intermediate_instance_13 = current.variables.intermediate_instance_13.toString();
+            obj.intermediate_instance_14 = current.variables.intermediate_instance_14.toString();
+            obj.intermediate_instance_15 = current.variables.intermediate_instance_15.toString();
+            obj.intermediate_instance_16 = current.variables.intermediate_instance_16.toString();
+            obj.intermediate_instance_17 = current.variables.intermediate_instance_17.toString();
+            obj.intermediate_instance_18 = current.variables.intermediate_instance_18.toString();
+            obj.intermediate_instance_19 = current.variables.intermediate_instance_19.toString();
+
+
+            all_env = obj_scoped.getProposedPath(obj);
+            all_env = all_env.split(',');
+            var requestUpdateSet, lnk;
+            var objUpdateSet;
+
+            for (var i = 1; i < all_env.length; i++) {
+                lnk = 'https://' + all_env[i] + '.service-now.com/api/now/table/sys_update_set_source?sysparm_query=urlLIKE' + all_env[i - 1] + '.service-now.com%5Eactive%3Dtrue';
+                requestUpdateSet = new sn_ws.RESTMessageV2();
+                requestUpdateSet.setEndpoint(lnk);
+
+                requestUpdateSet.setHttpMethod('GET');
+
+                requestUpdateSet.setBasicAuth(obj_scoped.getUserName(all_env[i]), obj_scoped.getPassword(all_env[i]));
+                requestUpdateSet.setRequestHeader("Accept", "application/json");
+                obj = requestUpdateSet.execute();
+                var code = obj.getStatusCode();
+
+                if (code != 200) {
+                    //send an email about connectivity
+                    this.info('Connectivity failure for ' + all_env[i], true);
+                    return ('Connectivity failure for ' + all_env[i] + '. Possible cause: Incorrect Username and password definition.');
+                } else {
+                    objUpdateSet = JSON.parse(obj.getBody());
+
+                    if (objUpdateSet.result.length == 0) {
+                        return 'Update source for instance ' + all_env[i - 1] + ' is not present in the following environment: ' + all_env[i] + '. Please create this required Update source in ' + all_env[i];
+                    }
+                }
+                if ((i + 1) >= all_env.length) return '';
+
+                lnk = 'https://' + all_env[i + 1] + '.service-now.com/api/now/table/sys_update_set_source?sysparm_query=urlLIKE' + all_env[i] + '.service-now.com%5Eactive%3Dtrue';
+                requestUpdateSet = new sn_ws.RESTMessageV2();
+                requestUpdateSet.setEndpoint(lnk);
+
+                requestUpdateSet.setHttpMethod('GET');
+                requestUpdateSet.setBasicAuth(obj_scoped.getUserName(all_env[i + 1]), obj_scoped.getPassword(all_env[i + 1]));
+
+                requestUpdateSet.setRequestHeader("Accept", "application/json");
+                obj = requestUpdateSet.execute();
+                code = obj.getStatusCode();
+
+                if (code != 200) {
+                    //send an email about connectivity
+                    this.info('Connectivity failure for ' + all_env[i + 1], true);
+                    return ('Connectivity failure for ' + all_env[i + 1] + '. Possible cause: Incorrect Username and password definition.');
+                } else {
+                    objUpdateSet = JSON.parse(obj.getBody());
+
+                    if (objUpdateSet.result.length == 0) {
+                        return 'Update source for instance ' + all_env[i] + ' is not present in the following environment: ' + all_env[i + 1] + '. Please create this required Update source in ' + all_env[i + 1];
+                    }
+                }
+
+            }
+            return '';
+        } catch (e) {
+            this.info('error in allEnvValue454443:' + e);
+            return 'error in allEnvValue454443:' + e;
+        }
+    },
+    info: function(msg, email_bool) {
+        try {
+            var enable_logging = gs.getProperty('x_7756_update_set.enable.logging');
+            if (enable_logging == undefined || enable_logging == null || enable_logging == '' || enable_logging.toString() == 'false') {
+                return;
+            }
+            if (email_bool === true) {
+                gs.info('Digest Email:' + msg);
+            } else {
+                gs.info(msg);
+            }
+        } catch (e) {
+            gs.info('error in info function of service_guru_us_helper_client:' + e);
+        }
+    },
+    getProperties: function() {
+        try {
+            var obj = {};
+            obj.valid_change_required = gs.getProperty('x_7756_update_set.non_prod_us_deployment_change_requirement_type').toString();
+            obj.production = gs.getProperty('x_7756_update_set.service_guru_production_instance') != undefined ? gs.getProperty('x_7756_update_set.service_guru_production_instance').toString() : '';
+            return JSON.stringify(obj);
+        } catch (e) {
+            this.info('error in getProperties function of service_guru_us_helper_client:' + e);
+            return '';
+        }
+    },
+    isOrchestratingInstance: function() {
+        try {
+            return gs.getProperty('instance_name').toString().trim() == gs.getProperty('x_7756_update_set.service_guru_orchestrator_instance').toString().trim();
+
+        } catch (e) {
+            this.info('error in isOrchestratingInstance function of service_guru_us_helper_client:' + e);
+        }
+    },
+    myOrderVal123: function() {
+        try {
+            var currentUser = gs.getUser();
+            return parseInt(parseInt(currentUser.getPreference('service.guru.auto.code.commit.order')) + 10);
+        } catch (e) {
+            this.info('error in myOrderVal123 function of service_guru_us_helper_client:' + e);
+        }
+    },
+    myReleaseVal123: function() {
+        try {
+            var currentUser = gs.getUser();
+            return currentUser.getPreference('service.guru.auto.code.commit.release');
+        } catch (e) {
+            this.info('error in myReleaseVal123 function of service_guru_us_helper_client:' + e);
+        }
+    },
+    myDevVal123: function() {
+        try {
+            var currentUser = gs.getUser();
+            return currentUser.getPreference('service.guru.auto.code.commit.dev.env');
+        } catch (e) {
+            this.info('error in myDevVal123 function of service_guru_us_helper_client:' + e);
+        }
+    },
+    checkDestinationEnvClogging: function() {
+        try {
+            var prevRitm = '';
+            //check if any previous submission is still pending to be completed
+            var grScReqItem = new GlideRecord('sc_req_item');
+            grScReqItem.addEncodedQuery("active=true^cat_item=dc96e3324f190010ff6ab8de9310c719^variables.b5add3084f250050ff6ab8de9310c7a1=" + this.getParameter('destination_environment'));
+            grScReqItem.orderBy('number');
+            grScReqItem.setLimit(10);
+            grScReqItem.query();
+
+            while (grScReqItem.next()) {
+                prevRitm += ', ' + grScReqItem.number;
+            }
+            if (prevRitm != '') {
+                return 'Previously submitted Request Items ' + prevRitm.substring(2) + ' for Destination environment ' + grScReqItem.variables.destination_environment.getDisplayValue() + ' are pending to be fulfilled. Please complete or Cancel these requests to proceed with any new submissions.';
+            }
+            return '';
+        } catch (e) {
+            this.info('error in checkDestinationEnvClogging function of service_guru_us_helper_client:' + e);
+            return 'error in checkDestinationEnvClogging function of service_guru_us_helper_client:' + e;
+        }
+    },
+    checkReleasev2: function() {
+        try {
+            var release = this.getParameter('release');
+            var prevRitm = '';
+            //check if any previous submission is still pending to be completed
+            var grScReqItem = new GlideRecord('sc_req_item');
+            grScReqItem.addEncodedQuery("active=true^cat_item=dc96e3324f190010ff6ab8de9310c719^variables.bc96ab3e4f1d0010ff6ab8de9310c736=" + release);
+            grScReqItem.orderBy('number');
+            grScReqItem.setLimit(10);
+            grScReqItem.query();
+
+            while (grScReqItem.next()) {
+                prevRitm += ', ' + grScReqItem.number;
+            }
+            if (prevRitm != '') {
+                return 'Previously submitted Request Items ' + prevRitm.substring(2) + ' for Release ' + grScReqItem.variables.release.getDisplayValue() + ' are pending to be fulfilled. Please complete or Cancel these requests to proceed with any new submissions.';
+            }
+
+            var obj = {},
+                arr = '';
+
+
+            var grX_7756USUSM2 = new GlideRecord('x_7756_update_set_component_tracker');
+            grX_7756USUSM2.addEncodedQuery('state!=3');
+            grX_7756USUSM2.addEncodedQuery("parent=" + release);
+            grX_7756USUSM2.orderBy('update_set_order');
+            grX_7756USUSM2.query();
+
+            while (grX_7756USUSM2.next()) {
+                obj = {};
+                obj.update_set = '';
+                obj.update_set_number = grX_7756USUSM2.number.toString();
+                obj.script = '';
+                obj.order = grX_7756USUSM2.update_set_order.toString();
+
+                obj.dev_environment = grX_7756USUSM2.dev_environment.toString();
+                obj.qa_environment = grX_7756USUSM2.qa_environment.toString();
+                obj.uat_environment = grX_7756USUSM2.uat_environment.toString();
+
+                obj.change_request = grX_7756USUSM2.change_request.toString();
+                obj.change_request_display = grX_7756USUSM2.change_request.number.toString();
+
+                obj.intermediate_instance_1 = grX_7756USUSM2.intermediate_instance_1.toString();
+                obj.intermediate_instance_2 = grX_7756USUSM2.intermediate_instance_2.toString();
+                obj.intermediate_instance_3 = grX_7756USUSM2.intermediate_instance_3.toString();
+                obj.intermediate_instance_4 = grX_7756USUSM2.intermediate_instance_4.toString();
+                obj.intermediate_instance_5 = grX_7756USUSM2.intermediate_instance_5.toString();
+                obj.intermediate_instance_6 = grX_7756USUSM2.intermediate_instance_6.toString();
+                obj.intermediate_instance_7 = grX_7756USUSM2.intermediate_instance_7.toString();
+
+                obj.intermediate_instance_8 = grX_7756USUSM2.intermediate_instance_8.toString();
+                obj.intermediate_instance_9 = grX_7756USUSM2.intermediate_instance_9.toString();
+                obj.intermediate_instance_10 = grX_7756USUSM2.intermediate_instance_10.toString();
+                obj.intermediate_instance_11 = grX_7756USUSM2.intermediate_instance_11.toString();
+                obj.intermediate_instance_12 = grX_7756USUSM2.intermediate_instance_12.toString();
+                obj.intermediate_instance_13 = grX_7756USUSM2.intermediate_instance_13.toString();
+                obj.intermediate_instance_14 = grX_7756USUSM2.intermediate_instance_14.toString();
+                obj.intermediate_instance_15 = grX_7756USUSM2.intermediate_instance_15.toString();
+                obj.intermediate_instance_16 = grX_7756USUSM2.intermediate_instance_16.toString();
+                obj.intermediate_instance_17 = grX_7756USUSM2.intermediate_instance_17.toString();
+                obj.intermediate_instance_18 = grX_7756USUSM2.intermediate_instance_18.toString();
+                obj.intermediate_instance_19 = grX_7756USUSM2.intermediate_instance_19.toString();
+                obj.destination_environment = grX_7756USUSM2.destination_environment.toString();
+
+                if (grX_7756USUSM2.type == 'update_set') {
+                    obj.update_set = grX_7756USUSM2.update_set_name.toString();
+                }
+                if (grX_7756USUSM2.type == 'script') {
+                    obj.script = encodeURIComponent(grX_7756USUSM2.script.toString());
+                }
+                arr += '!@#' + global.JSON.stringify(obj);
+            }
+            return arr.substring(3);
+        } catch (e) {
+            return '';
+        }
+    },
+
+
+    getInstance: function() {
+        try {
+            var non_prod = gs.getProperty('x_7756_update_set.non_prod_us_deployment_environments') == null ? '' : gs.getProperty('x_7756_update_set.non_prod_us_deployment_environments');
+            var prod = gs.getProperty('x_7756_update_set.service_guru_production_instance') == null ? '' : gs.getProperty('x_7756_update_set.service_guru_production_instance');
+            return non_prod + ',' + prod;
+        } catch (e) {
+            this.info('error in getInstance:' + e);
+
+            return 'error ' + e;
+        }
+    },
+    checkRelease: function() {
+        try {
+
+            var release = this.getParameter('release');
+
+            var grX_7756USUSM2 = new GlideRecord('x_7756_update_set_component_tracker');
+            grX_7756USUSM2.addEncodedQuery('state!=3');
+            grX_7756USUSM2.addEncodedQuery("parent=" + release);
+            grX_7756USUSM2.setLimit(1);
+            grX_7756USUSM2.query();
+
+            return grX_7756USUSM2.hasNext();
+        } catch (e) {
+            this.info('error in checkRelease:' + e);
+            return '';
+        }
+    },
+    setPreferenceForMVRS: function() {
+        var pref_name = this.getParameter('sysparm_pref_name');
+        var pref_value = this.getParameter('sysparm_pref_value');
+
+        var currentUser = gs.getUser();
+        currentUser.savePreference(pref_name, pref_value);
+        var returnObj = {
+            from: "server",
+            input: pref_value
+        };
+        return JSON.stringify(returnObj);
+    },
+    getPreferenceForMVRS: function() {
+        var pref_name = this.getParameter('sysparm_pref_name');
+        if (gs.getUser().getPreference(pref_name) == undefined || gs.getUser().getPreference(pref_name) == '' || gs.getUser().getPreference(pref_name) == null) {
+            return '';
+        }
+        return gs.getUser().getPreference(pref_name);
+    },
+
+
+    _privateFunction: function() { // this function is not client callable     
+    }
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-11-21 23:24:13</sys_created_on>
+        <sys_id>98d95d014f594010ff6ab8de9310c7ed</sys_id>
+        <sys_mod_count>118</sys_mod_count>
+        <sys_name>service_guru_us_helper_client</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_script_include_98d95d014f594010ff6ab8de9310c7ed</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2020-01-02 14:55:27</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register">
+    <sysevent_register action="INSERT_OR_UPDATE">
+        <description/>
+        <event_name>x_7756_update_set.sg.send.email.about.de</event_name>
+        <fired_by>scheduled job ServiceGuru - Send emails</fired_by>
+        <queue/>
+        <suffix>sg.send.email.about.deviation</suffix>
+        <sys_class_name>sysevent_register</sys_class_name>
+        <sys_created_by>service_guru_ravish</sys_created_by>
+        <sys_created_on>2019-12-23 15:58:29</sys_created_on>
+        <sys_id>11a6e0dbdb31801061aecd3f299619d7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_7756_update_set.sg.send.email.about.de</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sysevent_register_11a6e0dbdb31801061aecd3f299619d7</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-23 15:58:29</sys_updated_on>
+        <table>x_7756_update_set_component_tracker</table>
+    </sysevent_register>
+</record_update>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_number">
+    <sys_number action="INSERT_OR_UPDATE">
+        <category display_value="" name="x_7756_update_set_component_tracker">x_7756_update_set_component_tracker</category>
+        <maximum_digits>7</maximum_digits>
+        <number>1000</number>
+        <prefix>CMPT</prefix>
+        <sys_class_name>sys_number</sys_class_name>
+        <sys_created_by>service_guru_ravish</sys_created_by>
+        <sys_created_on>2019-12-22 19:43:52</sys_created_on>
+        <sys_id>d0d05ccfdb354010df9bc4ab0b9619d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CMPT</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_number_d0d05ccfdb354010df9bc4ab0b9619d2</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-22 19:43:52</sys_updated_on>
+    </sys_number>
+</record_update>

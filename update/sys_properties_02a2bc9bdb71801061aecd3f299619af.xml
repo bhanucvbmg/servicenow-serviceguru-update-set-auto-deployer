@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Production  Only - This property sets the Password for the User Profile used for Integration for the Production instance defined in the property x_7756_update_set.service_guru_production_instance.</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_7756_update_set.prod_us_deployment_password</name>
+        <read_roles/>
+        <suffix>x_7756_update_set.prod_us_deployment_password</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>service_guru_ravish</sys_created_by>
+        <sys_created_on>2019-12-23 16:51:07</sys_created_on>
+        <sys_id>02a2bc9bdb71801061aecd3f299619af</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>x_7756_update_set.prod_us_deployment_password</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_properties_02a2bc9bdb71801061aecd3f299619af</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-28 21:39:47</sys_updated_on>
+        <type>password</type>
+        <value/>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=02a2bc9bdb71801061aecd3f299619af"/>
+</record_update>

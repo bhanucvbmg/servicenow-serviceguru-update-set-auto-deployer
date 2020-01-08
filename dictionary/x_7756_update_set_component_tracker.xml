@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" label="Component tracker" max_length="40" name="x_7756_update_set_component_tracker" type="collection">
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Change request" max_length="32" name="change_request" read_only="true" reference="change_request" type="reference"/>
+        <element label="Destination environment" max_length="40" name="destination_environment" read_only="true" type="string"/>
+        <element choice="1" label="Dev environment (first)" max_length="40" name="dev_environment" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 1 (fourth)" max_length="40" name="intermediate_instance_1" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 10 (thirteenth))" max_length="40" name="intermediate_instance_10" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 11 (fourteenth)" max_length="40" name="intermediate_instance_11" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 12 (fifteenth)" max_length="40" name="intermediate_instance_12" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 13 (sixteenth)" max_length="40" name="intermediate_instance_13" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 14 (seventeenth)" max_length="40" name="intermediate_instance_14" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 15 (eighteenth)" max_length="40" name="intermediate_instance_15" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 16 (nineteenth)" max_length="40" name="intermediate_instance_16" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 17 (twentieth)" max_length="40" name="intermediate_instance_17" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 18 (twenty-first)" max_length="40" name="intermediate_instance_18" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 19 (twenty-second)" max_length="40" name="intermediate_instance_19" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 2 (fifth)" max_length="40" name="intermediate_instance_2" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 3 (sixth)" max_length="40" name="intermediate_instance_3" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 4 (seventh)" max_length="40" name="intermediate_instance_4" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 5 (eigth)" max_length="40" name="intermediate_instance_5" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 6 (ninth)" max_length="40" name="intermediate_instance_6" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 7 (tenth)" max_length="40" name="intermediate_instance_7" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 8 (eleventh)" max_length="40" name="intermediate_instance_8" type="string">
+            <choice/>
+        </element>
+        <element choice="1" label="Intermediate instance 9 (twelfth)" max_length="40" name="intermediate_instance_9" type="string">
+            <choice/>
+        </element>
+        <element label="Last commit time" max_length="40" name="last_commit_time" read_only="true" type="glide_date_time"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:getNextObjNumberPadded();" dynamic_default_value="fdcb83a85f220100a9ad2572f2b4773c" label="Number" max_length="40" name="number" read_only="true" type="string" use_dynamic_default="true"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Release" max_length="40" name="parent" read_only="true" reference="task" type="reference"/>
+        <element choice="1" label="QA environment (second)" max_length="40" name="qa_environment" type="string">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="release" max_length="32" name="release" read_only="true" reference="task" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Request item" max_length="32" name="request_item" reference="sc_req_item" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Script" max_length="8000" name="script" type="script"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="-3" label="State" max_length="40" name="state" read_only="true" type="integer">
+            <choice>
+                <element inactive_on_update="false" label="Pending" sequence="100" value="-5"/>
+                <element inactive_on_update="false" label="Complete" sequence="200" value="3"/>
+            </choice>
+        </element>
+        <element choice="1" label="Type" max_length="40" name="type" read_only="true" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Script" value="script"/>
+                <element inactive_on_update="false" label="Update set" value="update_set"/>
+            </choice>
+        </element>
+        <element choice="1" label="UAT environment (third)" max_length="40" name="uat_environment" type="string">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Component last present environment" max_length="40" name="update_set_last_present_environment" read_only="true" type="string"/>
+        <element label="Update set name" max_length="40" name="update_set_name" type="string"/>
+        <element label="Component's Next Proposed Environment" max_length="40" name="update_set_next_environment" read_only="true" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Component order" max_length="40" name="update_set_order" type="integer"/>
+        <element label="Component's Current Path" max_length="4000" name="update_set_path" read_only="true" type="string"/>
+        <element label="Component's Proposed Path" max_length="4000" name="update_set_proposed_path" read_only="true" type="string"/>
+        <element label="Update set sys id" max_length="40" name="update_set_sys_id" read_only="true" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Work notes" max_length="40" name="work_notes" type="journal_input"/>
+        <index name="index">
+            <element name="parent"/>
+        </index>
+        <index name="index2">
+            <element name="release"/>
+        </index>
+        <index name="index3">
+            <element name="request_item"/>
+        </index>
+        <index name="index4">
+            <element name="change_request"/>
+        </index>
+    </element>
+</database>

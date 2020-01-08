@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>ServiceNow Group name who will get digest emails (Only 1 team name can be accommodated)</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_7756_update_set.digest_emails_group</name>
+        <read_roles/>
+        <suffix>x_7756_update_set.digest_emails_group</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>service_guru_ravish</sys_created_by>
+        <sys_created_on>2019-12-28 21:08:03</sys_created_on>
+        <sys_id>88bd53fc078e401093b9f0269c1ed041</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_7756_update_set.digest_emails_group</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_properties_88bd53fc078e401093b9f0269c1ed041</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-28 21:39:47</sys_updated_on>
+        <type>string</type>
+        <value/>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=88bd53fc078e401093b9f0269c1ed041"/>
+</record_update>

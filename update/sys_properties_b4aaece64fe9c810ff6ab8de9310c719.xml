@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices>manual,smart_accept,skip_all,accept_all</choices>
+        <description> Choose the mode of dealing with when Warnings and Errors occur.  Any changes to this property would be across all environments and you cannot pick and choose different behavior for different Releases. In Manual mode, the errors and warnings will have to be resolved manually by the developers and the tool will wait till it no longer sees any Warnings or Errors. In 'Smart Accept' mode, similar to manual mode, the errors and warnings need to be resolved by the developers based on their first occurence. For subsequent instances, the tool will be accept/skip based on the decisions made in the previous environment if the same kind of collison is found.  'Skip all' would ignore all errors and warnings. 'Accept all' would accept all errors and warnings irrespective of the type of errors and warnings.</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_7756_update_set.non_prod_us_deployment_error_acceptance_mode</name>
+        <read_roles/>
+        <suffix>non_prod_us_deployment_error_acceptance_mode</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-12-08 22:04:26</sys_created_on>
+        <sys_id>b4aaece64fe9c810ff6ab8de9310c719</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_name>x_7756_update_set.non_prod_us_deployment_error_acceptance_mode</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_properties_b4aaece64fe9c810ff6ab8de9310c719</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-28 21:39:47</sys_updated_on>
+        <type>choicelist</type>
+        <value>manual</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=b4aaece64fe9c810ff6ab8de9310c719"/>
+</record_update>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="qa_environment" label="QA environment (second)" language="en" table="x_7756_update_set_component_tracker">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>qa_environment</element>
+            <help/>
+            <hint/>
+            <label>QA environment (second)</label>
+            <language>en</language>
+            <name>x_7756_update_set_component_tracker</name>
+            <plural>QA environment (second)</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>service_guru_ravish</sys_created_by>
+            <sys_created_on>2019-12-22 19:24:30</sys_created_on>
+            <sys_id>f47c44cbdb354010df9bc4ab0b96190f</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>QA environment (second)</sys_name>
+            <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+            <sys_update_name>sys_documentation_x_7756_update_set_component_tracker_qa_environment_en</sys_update_name>
+            <sys_updated_by>service_guru_ravish</sys_updated_by>
+            <sys_updated_on>2019-12-22 20:14:09</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

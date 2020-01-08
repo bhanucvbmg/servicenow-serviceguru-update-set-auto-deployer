@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category">
+    <sys_properties_category action="INSERT_OR_UPDATE">
+        <name>ServiceGuru -Non Orchestrator Properties</name>
+        <sys_class_name>sys_properties_category</sys_class_name>
+        <sys_created_by>service_guru_ravish</sys_created_by>
+        <sys_created_on>2019-12-25 17:59:50</sys_created_on>
+        <sys_id>7dd51bb3dbf5441061aecd3f299619e9</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>ServiceGuru -Non Orchestrator Properties</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_properties_category_7dd51bb3dbf5441061aecd3f299619e9</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2020-01-04 17:34:52</sys_updated_on>
+        <title><![CDATA[<p><span style="color: #ff0000;">Important: The changes to properties on this page are local to this instance. You will need to perform the same property changes in respective ServiceNow instances where this tool is installed.</span></p>
+<p>Also: Download/Install the dependency app <a title="from this link (For first time installation Only)" href="https://developer.servicenow.com/app.do#!/share/contents/9914689_dependency_app_track_and_automate_deployment_of_update_set_and_custom_scripts_in_servicenow_dependency?t&#61;PRODUCT_DETAILS" target="_blank" rel="noopener noreferrer nofollow">from this link (For first time installation Only)</a>. <span style="color: #ff0000;">This is a MUST for first time installation</span> or else the tool will not work. For subsequent upgrades to the main app, you don&#39;t need to install the dependency.</p>
+<p>Contact: <strong>shettyravish&#64;outlook.com</strong> for any custom tool modification requests. Also reachable on <a title="LinkedIn" href="https://www.linkedin.com/in/ravio" target="_blank" rel="noopener noreferrer nofollow">LinkedIn</a>.</p>
+<p> </p>]]></title>
+    </sys_properties_category>
+    <sys_translated_text action="delete_multiple" query="documentkey=7dd51bb3dbf5441061aecd3f299619e9"/>
+</record_update>

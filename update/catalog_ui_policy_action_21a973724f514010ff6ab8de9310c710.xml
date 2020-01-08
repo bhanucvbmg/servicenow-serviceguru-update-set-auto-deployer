@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="catalog_ui_policy_action">
+    <catalog_ui_policy_action action="INSERT_OR_UPDATE">
+        <catalog_item/>
+        <catalog_variable>IO:d659f7fe4f114010ff6ab8de9310c725</catalog_variable>
+        <cleared>false</cleared>
+        <disabled>true</disabled>
+        <field/>
+        <mandatory>ignore</mandatory>
+        <order>100</order>
+        <sys_class_name>catalog_ui_policy_action</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-11-27 21:31:05</sys_created_on>
+        <sys_id>21a973724f514010ff6ab8de9310c710</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>change_detected</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>catalog_ui_policy_action_21a973724f514010ff6ab8de9310c710</sys_update_name>
+        <sys_updated_by>rshetty</sys_updated_by>
+        <sys_updated_on>2019-11-27 21:31:05</sys_updated_on>
+        <table/>
+        <ui_policy display_value="read only variables">97bae3fa4f5d0010ff6ab8de9310c7d2</ui_policy>
+        <variable>change_detected</variable>
+        <variable_set display_value="ServiceGuru - Update Set">85f807364f950010ff6ab8de9310c7cc</variable_set>
+        <visible>ignore</visible>
+    </catalog_ui_policy_action>
+</record_update>

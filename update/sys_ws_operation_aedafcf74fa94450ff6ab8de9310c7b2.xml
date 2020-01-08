@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>auto_skip_e_and_w</name>
+        <operation_script><![CDATA[(function process( /*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    try {
+        // implement resource here
+        var obj = decodeURIComponent(request.pathParams.update_set_params.toString());
+        if (gs.getProperty('x_7756_update_set.service_guru_enable.non.orchestrator.logging').toString() == 'true') gs.info('REST Resource:auto_skip_e_and_w. obj :' + obj);
+
+
+        obj = JSON.parse(obj);
+
+
+        var retVal = {
+            "response_code": new global.service_guru_auto_commit_global().auto_accept_e_and_w(obj[0].updateSetName, '', obj[0].src_env, 'skip_all')
+        };
+        response.setBody(retVal);
+    } catch (e) {
+        if (gs.getProperty('x_7756_update_set.service_guru_enable.non.orchestrator.logging').toString() == 'true') gs.info('error in REST resource auto_skip_e_and_w :' + e);
+    }
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_7756_update_set/service_guru_auto_deployment_utility/auto_skip_e_and_w/update_set_params/{update_set_params}/skip</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/auto_skip_e_and_w/update_set_params/{update_set_params}/skip</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-12-12 20:27:15</sys_created_on>
+        <sys_id>aedafcf74fa94450ff6ab8de9310c7b2</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>auto_skip_e_and_w</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_ws_operation_aedafcf74fa94450ff6ab8de9310c7b2</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-30 20:55:49</sys_updated_on>
+        <web_service_definition display_value="service_guru_auto_deployment_utility">b4ea96654f99c410ff6ab8de9310c789</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

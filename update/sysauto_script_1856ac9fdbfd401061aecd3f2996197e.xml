@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <condition><![CDATA[checkTriggerCondition4554534();
+
+function checkTriggerCondition4554534() {
+    try {
+        //this means that the integration switch is ON. this variable is checked in all functions
+        var switch_value = gs.getProperty('x_7756_update_set.non_prod_us_deployment_on_switch');
+
+        if (switch_value != undefined && switch_value != null && switch_value != '') {
+            if (switch_value.toString().toLowerCase() == 'true' || switch_value.toString().toLowerCase() == true) {
+
+                //determine which instance is orchestrator so that the this job does not accidentally run in a non-orchestrator environment
+                if (gs.getProperty('instance_name').toString() == gs.getProperty('x_7756_update_set.service_guru_orchestrator_instance').toString()) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } catch (e) {
+        return false;
+    }
+}]]></condition>
+        <conditional>true</conditional>
+        <name>ServiceGuru - Send emails (Turn ON in Orchestrator Instance ONLY)</name>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period>1970-01-01 02:00:00</run_period>
+        <run_start>2019-09-10 04:00:00</run_start>
+        <run_time>1970-01-01 05:05:00</run_time>
+        <run_type>periodically</run_type>
+        <script><![CDATA[updateSetAutoDeployJob54543454();
+
+function updateSetAutoDeployJob54543454() {
+
+    try {
+        var obj = new service_guru_us_helper_scoped();
+        obj.sendEmails();
+
+    } catch (e) {
+        obj.info("Job sys id '1856ac9fdbfd401061aecd3f2996197e'. \nError in job function updateSetAutoDeployJob54543454:" + e);
+    }
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>service_guru_ravish</sys_created_by>
+        <sys_created_on>2019-12-23 15:56:00</sys_created_on>
+        <sys_id>1856ac9fdbfd401061aecd3f2996197e</sys_id>
+        <sys_mod_count>46</sys_mod_count>
+        <sys_name>ServiceGuru - Send emails (Turn ON in Orchestrator Instance ONLY)</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sysauto_script_1856ac9fdbfd401061aecd3f2996197e</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2020-01-05 15:47:17</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

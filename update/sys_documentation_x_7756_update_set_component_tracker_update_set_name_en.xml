@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="update_set_name" label="Update set name" language="en" table="x_7756_update_set_component_tracker">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>update_set_name</element>
+            <help/>
+            <hint/>
+            <label>Update set name</label>
+            <language>en</language>
+            <name>x_7756_update_set_component_tracker</name>
+            <plural>Update set names</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>service_guru_ravish</sys_created_by>
+            <sys_created_on>2019-12-22 19:24:30</sys_created_on>
+            <sys_id>687c04cbdb354010df9bc4ab0b9619d1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Update set name</sys_name>
+            <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+            <sys_update_name>sys_documentation_x_7756_update_set_component_tracker_update_set_name_en</sys_update_name>
+            <sys_updated_by>service_guru_ravish</sys_updated_by>
+            <sys_updated_on>2019-12-22 19:24:30</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

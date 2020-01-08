@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="ServiceGuru - Deployment Management">aaad80da4fb00810ff6ab8de9310c70d</application>
+        <assessment/>
+        <content_page/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>DIRECT</link_type>
+        <map_page/>
+        <mobile_title>Update Set Management2s</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name>x_7756_update_set_update_set_management2</name>
+        <order>300</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query>/system_properties_ui.do?sysparm_title=ServiceGuru%20-%20Non-Orchestrator %20Properties&amp;sysparm_category=ServiceGuru%20-Non%20Orchestrator%20Properties&amp;sysparm_domain_restore=false&amp;sysparm_stack=no</query>
+        <report/>
+        <roles>x_7756_update_set.update_set_management2_user</roles>
+        <survey/>
+        <survey_overwrite>false</survey_overwrite>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>service_guru_ravish</sys_created_by>
+        <sys_created_on>2019-12-25 18:01:51</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d346dff3dbf5441061aecd3f29961978</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Non Orchestrator Instance Properties</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_app_module_d346dff3dbf5441061aecd3f29961978</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-25 18:05:54</sys_updated_on>
+        <timeline_page/>
+        <title>Non Orchestrator Instance Properties</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+</record_update>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="ServiceGuru - Orchestrator Properties">ecb7f64c4fadcc10ff6ab8de9310c7c0</category>
+        <order>910</order>
+        <property display_value="x_7756_update_set.prod_us_deployment_username" name="x_7756_update_set.prod_us_deployment_username">e6a2bc9bdb71801061aecd3f29961914</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>service_guru_ravish</sys_created_by>
+        <sys_created_on>2019-12-23 16:50:42</sys_created_on>
+        <sys_id>61d2701fdb71801061aecd3f299619a7</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_7756_update_set.prod_us_deployment_username.ServiceGuru - Deployment Management</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_61d2701fdb71801061aecd3f299619a7</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-23 16:53:02</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

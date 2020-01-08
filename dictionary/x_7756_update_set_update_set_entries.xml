@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Update Set Entries" max_length="40" name="x_7756_update_set_update_set_entries" type="collection">
+        <element choice="1" label="Update Set Action" max_length="40" name="action" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Delete" value="DELETE"/>
+                <element inactive_on_update="false" label="Insert or Update" value="INSERT_OR_UPDATE"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Preview Action Taken" max_length="40" name="preview_action" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Committed" sequence="10" value="commit"/>
+                <element inactive_on_update="false" label="Ignored" sequence="10" value="ignored"/>
+                <element inactive_on_update="false" label="Skipped" sequence="20" value="skipped"/>
+                <element inactive_on_update="false" label="Skip (Collision)" sequence="30" value="skip_collision"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Preview Action Environment" max_length="40" name="preview_action_environment" read_only="true" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Preview Result" max_length="40" name="preview_result" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Error" sequence="0" value="error"/>
+                <element inactive_on_update="false" label="Warning" sequence="1" value="warning"/>
+            </choice>
+        </element>
+        <element label="Target Name" max_length="200" name="target_name" type="string"/>
+        <element label="Type" max_length="40" name="type" type="string"/>
+        <element label="Update entry" max_length="200" name="update_entry" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Update set" max_length="32" name="update_set" reference="x_7756_update_set_component_tracker" type="reference"/>
+        <index name="index">
+            <element name="update_set"/>
+        </index>
+    </element>
+</database>

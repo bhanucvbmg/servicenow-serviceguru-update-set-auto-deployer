@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_7756_update_set_component_tracker</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>ServiceGuru - Validation - On Update</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+    try {
+        var grX_7756USUSM2;
+
+        //update operation
+
+
+        if (current.dev_environment.changes() || current.update_set_sys_id.changes()) {
+            current.customer_updates = 'https://' + current.dev_environment + '.service-now.com/sys_update_xml_list.do?sysparm_query=update_set%3D' + current.update_set_sys_id + '%5E&sysparm_view=';
+        }
+
+        var all_env = new x_7756_update_set.service_guru_us_helper_scoped().getProposedPath(current);
+
+        if (all_env.indexOf(current.destination_environment.toString()) == -1) {
+            gs.addErrorMessage(gs.getMessage('Destination Environment does not match any of the selected environments in the Environment tab.'));
+            current.setAbortAction(true);
+            return;
+        }
+        if (current.dev_environment.changes() || current.qa_environment.changes() || current.uat_environment.changes() || current.intermediate_instance_1.changes() || current.intermediate_instance_2.changes() || current.intermediate_instance_3.changes() || current.intermediate_instance_4.changes() || current.intermediate_instance_5.changes() || current.intermediate_instance_6.changes() || current.intermediate_instance_7.changes() || current.destination_environment.changes() || current.intermediate_instance_8.changes() || current.intermediate_instance_9.changes() || current.intermediate_instance_10.changes() || current.intermediate_instance_11.changes() || current.intermediate_instance_12.changes() || current.intermediate_instance_13.changes() || current.intermediate_instance_14.changes() || current.intermediate_instance_15.changes() || current.intermediate_instance_16.changes() || current.intermediate_instance_17.changes() || current.intermediate_instance_18.changes() || current.intermediate_instance_19.changes() || current.change_request.changes()) {
+
+            if (checkForDuplicates5454544(all_env.split(','))) {
+                gs.addErrorMessage(gs.getMessage('Duplicate environments detected'));
+                current.setAbortAction(true);
+                return;
+            }
+            current.update_set_proposed_path = all_env;
+            //let the job reset these below 3 attributes
+            current.update_set_last_present_environment = '';
+            current.update_set_last_present_environment = '';
+            current.update_set_path = '';
+
+            grX_7756USUSM2 = new GlideRecord('x_7756_update_set_component_tracker');
+            grX_7756USUSM2.addEncodedQuery("parent=" + current.parent);
+            grX_7756USUSM2.addEncodedQuery("sys_id!=" + current.sys_id);
+            grX_7756USUSM2.query();
+
+            while (grX_7756USUSM2.next()) {
+                grX_7756USUSM2.destination_environment = current.destination_environment;
+                grX_7756USUSM2.dev_environment = current.dev_environment;
+                grX_7756USUSM2.qa_environment = current.qa_environment;
+                grX_7756USUSM2.uat_environment = current.uat_environment;
+                grX_7756USUSM2.intermediate_instance_1 = current.intermediate_instance_1;
+                grX_7756USUSM2.intermediate_instance_2 = current.intermediate_instance_2;
+                grX_7756USUSM2.intermediate_instance_3 = current.intermediate_instance_3;
+                grX_7756USUSM2.intermediate_instance_4 = current.intermediate_instance_4;
+                grX_7756USUSM2.intermediate_instance_5 = current.intermediate_instance_5;
+                grX_7756USUSM2.intermediate_instance_6 = current.intermediate_instance_6;
+                grX_7756USUSM2.intermediate_instance_7 = current.intermediate_instance_7;
+                grX_7756USUSM2.intermediate_instance_8 = current.intermediate_instance_8;
+                grX_7756USUSM2.intermediate_instance_9 = current.intermediate_instance_9;
+                grX_7756USUSM2.intermediate_instance_10 = current.intermediate_instance_10;
+                grX_7756USUSM2.intermediate_instance_11 = current.intermediate_instance_11;
+                grX_7756USUSM2.intermediate_instance_12 = current.intermediate_instance_12;
+                grX_7756USUSM2.intermediate_instance_13 = current.intermediate_instance_13;
+                grX_7756USUSM2.intermediate_instance_14 = current.intermediate_instance_14;
+                grX_7756USUSM2.intermediate_instance_15 = current.intermediate_instance_15;
+                grX_7756USUSM2.intermediate_instance_16 = current.intermediate_instance_16;
+                grX_7756USUSM2.intermediate_instance_17 = current.intermediate_instance_17;
+                grX_7756USUSM2.intermediate_instance_18 = current.intermediate_instance_18;
+                grX_7756USUSM2.intermediate_instance_19 = current.intermediate_instance_19;
+                grX_7756USUSM2.change_request = current.change_request;
+                grX_7756USUSM2.update_set_proposed_path = all_env;
+                grX_7756USUSM2.update();
+            }
+        }
+
+
+    } catch (e) {
+        if (gs.getProperty('x_7756_update_set.enable.logging').toString() == 'true') gs.info('error in sync env. business rule - update:' + e);
+    }
+
+})(current, previous);
+
+function checkForDuplicates5454544(env) {
+    try {
+        for (var i = 0; i < env.length; i++) {
+            for (var j = 0; j < env.length; j++) {
+                if (i != j && env[i] == env[j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    } catch (e) {
+        if (gs.getProperty('x_7756_update_set.enable.logging').toString() == 'true') gs.info('error in checkForDuplicates5454544:' + e);
+        return true;
+    }
+}]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-11-22 22:58:03</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>6caddadd4f990410ff6ab8de9310c729</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>ServiceGuru - Validation - On Update</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_script_6caddadd4f990410ff6ab8de9310c729</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-31 22:55:59</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=6caddadd4f990410ff6ab8de9310c729"/>
+</record_update>

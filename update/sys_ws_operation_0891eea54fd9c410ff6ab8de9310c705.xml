@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>commit_update_set</name>
+        <operation_script><![CDATA[(function process( /*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    try {
+        // implement resource here
+        var update_set_name = decodeURIComponent(request.pathParams.update_set_params.split('!@!@!@!@!@!@!@!@')[0]);
+        var source_environment = request.pathParams.update_set_params.split('!@!@!@!@!@!@!@!@')[1];
+        var mess = new global.service_guru_auto_commit_global().commitUpdateSet(update_set_name, source_environment);
+
+        if (gs.getProperty('x_7756_update_set.service_guru_enable.non.orchestrator.logging').toString() == 'true') {
+            gs.info('REST Resource:commit_update_set. update_set_name:' + update_set_name+' and source_environment:' + source_environment);
+            gs.info('REST Resource:commit_update_set REST Resource: mess :' + mess);
+        }
+        var retVal;
+        if (mess.indexOf('~') == -1) {
+            retVal = {
+                "response_code": mess
+            };
+        } else {
+            mess = mess.split('~');
+            retVal = {
+                "response_code": mess[0],
+                "response_message": mess[1]
+            };
+        }
+        response.setBody(retVal);
+    } catch (e) {
+        if (gs.getProperty('x_7756_update_set.service_guru_enable.non.orchestrator.logging').toString() == 'true') gs.info('error in REST resource commit_update_set :' + e);
+    }
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_7756_update_set/service_guru_auto_deployment_utility/commit_update_set/update_set_params/{update_set_params}/commit</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/commit_update_set/update_set_params/{update_set_params}/commit</relative_path>
+        <request_example>This REST API is used to commit scripts</request_example>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>commit scripts</short_description>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-11-23 17:53:42</sys_created_on>
+        <sys_id>0891eea54fd9c410ff6ab8de9310c705</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>commit_update_set</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_ws_operation_0891eea54fd9c410ff6ab8de9310c705</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-30 20:54:23</sys_updated_on>
+        <web_service_definition display_value="service_guru_auto_deployment_utility">b4ea96654f99c410ff6ab8de9310c789</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

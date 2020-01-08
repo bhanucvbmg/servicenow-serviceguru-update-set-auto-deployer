@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_7756_update_set_component_tracker</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>ServiceGuru - Validation - On Insert</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+    try {
+        if (current.request_item == '') {
+            gs.addErrorMessage('Invalid Insert');
+            current.setAbortAction(true);
+            return;
+        }
+        //grab environment information from existing updateset information
+        current.update_set_proposed_path = new x_7756_update_set.service_guru_us_helper_scoped().getProposedPath(current);
+
+        var grX_7756USUSM2 = new GlideRecord('x_7756_update_set_component_tracker');
+        grX_7756USUSM2.addQuery('update_set_order', '!=', '');
+        grX_7756USUSM2.orderByDesc('update_set_order');
+        grX_7756USUSM2.setLimit(1);
+        grX_7756USUSM2.query();
+
+        //set update set order.
+        //number maintenace is not used as sometimes the update set order can be fluid 
+        if (grX_7756USUSM2.next()) {
+            current.update_set_order = parseInt(grX_7756USUSM2.update_set_order) + 10;
+        } else {
+            current.update_set_order = 1;
+        }
+    } catch (e) {
+        if (gs.getProperty('x_7756_update_set.enable.logging').toString() == 'true') gs.info('error in sync env. business rule insert:' + e);
+    }
+})(current, previous);
+
+function checkForDuplicates5454(env) {
+    try {
+        for (var i = 0; i < env.length; i++) {
+            for (var j = 0; j < env.length; j++) {
+                if (i != j && env[i] == env[j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    } catch (e) {
+        if (gs.getProperty('x_7756_update_set.enable.logging').toString() == 'true') gs.info('error in checkForDuplicates5454:' + e);
+        return true;
+    }
+}]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>rshetty</sys_created_by>
+        <sys_created_on>2019-11-02 19:22:15</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b07a6e764f3c0c10ff6ab8de9310c72c</sys_id>
+        <sys_mod_count>56</sys_mod_count>
+        <sys_name>ServiceGuru - Validation - On Insert</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>sys_script_b07a6e764f3c0c10ff6ab8de9310c72c</sys_update_name>
+        <sys_updated_by>service_guru_ravish</sys_updated_by>
+        <sys_updated_on>2019-12-31 19:15:14</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=b07a6e764f3c0c10ff6ab8de9310c72c"/>
+</record_update>
