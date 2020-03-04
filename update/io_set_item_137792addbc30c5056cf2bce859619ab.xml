@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="io_set_item">
+    <io_set_item action="INSERT_OR_UPDATE">
+        <order>111</order>
+        <sc_cat_item display_value="ServiceNow - Automated Deployment">a677166ddbc30c5056cf2bce85961954</sc_cat_item>
+        <sys_class_name>io_set_item</sys_class_name>
+        <sys_created_by>sxchalub</sys_created_by>
+        <sys_created_on>2020-02-18 16:59:34</sys_created_on>
+        <sys_id>137792addbc30c5056cf2bce859619ab</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ServiceGuru - Update Set.Copy of ServiceGuru - Automated Deployment</sys_name>
+        <sys_package display_value="Auto Deployment - ServiceGuru" source="x_7756_update_set">870d48164fb00810ff6ab8de9310c78e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Auto Deployment - ServiceGuru">870d48164fb00810ff6ab8de9310c78e</sys_scope>
+        <sys_update_name>io_set_item_137792addbc30c5056cf2bce859619ab</sys_update_name>
+        <sys_updated_by>sxchalub</sys_updated_by>
+        <sys_updated_on>2020-02-18 16:59:34</sys_updated_on>
+        <variable_set display_value="ServiceGuru - Update Set">85f807364f950010ff6ab8de9310c7cc</variable_set>
+    </io_set_item>
+</record_update>
